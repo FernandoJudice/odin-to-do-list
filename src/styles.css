@@ -21,6 +21,11 @@ body {
     grid-row: 1/-1;
 }
 
+
+.content {
+    padding: 32px;
+}
+
 .greetings {
     display: grid;
     grid-template-columns: 112px 1fr;
@@ -41,4 +46,28 @@ body {
 .gt-name {
     font-size: 2rem;
     font-weight: bold;
+}
+
+.project {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    border-bottom: 4px var(--primary-color) solid;
+    max-width: 1080px;
+    padding: 16px;
+}
+
+.pj-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    margin: 0 4px;
+}
+
+.icon-button {
+    width: 32px;
 }
