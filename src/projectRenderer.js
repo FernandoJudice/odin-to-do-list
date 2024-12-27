@@ -35,7 +35,7 @@ export const ProjectRenderer = (function() {
         taskContainer.classList.add("task-container");
         project.appendChild(taskContainer);
 
-        taskContainer.appendChild(new IconButton(addTaskIcon))
+        taskContainer.appendChild(new IconButton(addTaskIcon,null,"New Task"))
 
         return project
     }

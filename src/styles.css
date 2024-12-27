@@ -15,6 +15,10 @@ body {
     min-height: 100vh;
 }
 
+.std-text {
+    font-size: 1.3rem;
+}
+
 .sidebar {
     background-color: var(--third-color);
     grid-column: 1;
@@ -62,13 +66,23 @@ body {
     font-weight: bold;
 }
 
+.pj-header div {
+    display: flex;
+}
+
 .icon-button {
+    display: flex;
+    align-items: center;
     background: none;
     border: none;
     margin: 0 4px;
 }
 
-.icon-button {
+.icon-button div {
+    padding-left: 24px;
+}
+
+.icon-img {
     width: 32px;
 }
 

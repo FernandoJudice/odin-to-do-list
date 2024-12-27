@@ -1,4 +1,4 @@
-export function IconButton(icon,callback) {
+export function IconButton(icon,callback, label) {
     const button = document.createElement("button");
     button.classList.add("icon-button");
     
@@ -12,6 +12,13 @@ export function IconButton(icon,callback) {
     }
 
     button.addEventListener("click",callback)
+
+    if (label) {
+    const buttonLabel = document.createElement("div");
+    buttonLabel.classList.add("std-text");
+    buttonLabel.textContent = label;
+    button.appendChild(buttonLabel);
+    }
 
     return button
 }
