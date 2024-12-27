@@ -5,4 +5,9 @@ export function ProjectController(projects) {
         let index = projects.indexOf(projectData);
         if (index>0) {projects.splice(index,1)};
     }
+
+    this.updateName = (projectData,newName) => {
+        projectData.name = newName;
+        console.log(projects);
+    }
 }

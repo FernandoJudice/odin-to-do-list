@@ -33,9 +33,35 @@ export const ProjectRenderer = (function() {
 
     }
 
-    function _create_edit(header) {
+    function _create_edit(header, projectData, projectController) {
         const title = header.firstChild;
         const _header = header;
+        const _projectData = projectData
+        const _projectController = projectController
+
+        function create_cancel(field,original, input) {
+            const _field = field;
+            const _original = original;
+            const _input = input;
+
+            return function cancel() {
+                _input.remove();
+                _field.textContent = _original;
+            }
+        }
+
+        function create_confirm(field, input, projectData, projectController) {
+            const _field = field;
+            const _input = input;
+            const _projectData = projectData;
+
+            return function cancel() {
+                _field.textContent = input.firstChild.value;
+                projectController.updateName(projectData,_field.textContent)
+                _input.remove();
+            }
+        }
+
         return function edit() {
             let fieldValue = title.textContent;
             title.textContent = "";
@@ -44,10 +70,10 @@ export const ProjectRenderer = (function() {
             title.appendChild(editDiv);
             const input = document.createElement("input");
             input.classList.add("edit-bar")
-            input.value = title.textContent;
+            input.value = fieldValue;
             editDiv.appendChild(input);
-            editDiv.appendChild(new IconButton(confirmIcon))
-            editDiv.appendChild(new IconButton(cancelIcon))
+            editDiv.appendChild(new IconButton(confirmIcon, create_confirm(title,editDiv,_projectData, _projectController)))
+            editDiv.appendChild(new IconButton(cancelIcon, create_cancel(title,fieldValue,editDiv)))
         }
     }
 
@@ -61,7 +87,7 @@ export const ProjectRenderer = (function() {
         const div = document.createElement("div");
         pjHeader.appendChild(div);
 
-        div.appendChild(new IconButton(editIcon, _create_edit(pjHeader)))
+        div.appendChild(new IconButton(editIcon, _create_edit(pjHeader, projectData, projectController)))
         div.appendChild(new IconButton(deleteIcon,_create_delete(project, projectController, projectData)))
 
         const taskContainer = document.createElement("div");
