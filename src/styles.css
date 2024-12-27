@@ -21,3 +21,24 @@ body {
     grid-row: 1/-1;
 }
 
+.greetings {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.greetings img {
+    grid-row: 1/ -1;
+    padding: 12px;
+    width: 64px;
+}
+
+.gt-user {
+    font-weight: bold;
+}
+
+.gt-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
