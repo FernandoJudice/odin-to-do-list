@@ -14,22 +14,35 @@ export const ProjectRenderer = (function() {
         projectName.textContent = projectData.name;
         project.appendChild(projectName);
         
-
-        const div = document.createElement("div");
-        project.appendChild(div);
-
-        div.appendChild(new IconButton(editIcon))
-        div.appendChild(new IconButton(deleteIcon))
-        
         return project
     }
 
-    function create(projectData) {
+    function _create_delete(projectDiv, projectController, projectData) {
+        const _projectDiv = projectDiv;
+        const _projectController = projectController;
+        const _projectData = projectData
+
+        return function deleteProject() {
+            if (projectController) {
+                projectController.delete(projectData);
+            }
+            projectDiv.remove();
+        }
+
+    }
+
+    function create(projectData, projectController) {
         const project = document.createElement("div");
         project.classList.add("project");
         
         const pjHeader = _create_header(projectData);
         project.appendChild(pjHeader);
+
+        const div = document.createElement("div");
+        pjHeader.appendChild(div);
+
+        div.appendChild(new IconButton(editIcon))
+        div.appendChild(new IconButton(deleteIcon,_create_delete(project, projectController, projectData)))
 
         const taskContainer = document.createElement("div");
         taskContainer.classList.add("task-container");
