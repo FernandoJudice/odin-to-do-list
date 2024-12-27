@@ -3,6 +3,8 @@ import editIcon from "./img/pencil-outline.svg"
 import addTaskIcon from "./img/plus-circle.svg"
 import { IconButton } from "./iconButton";
 
+import confirmIcon from "./img/check-outline.svg"
+import cancelIcon from "./img/cancel.svg"
 
 export const ProjectRenderer = (function() {
     function _create_header(projectData) {
@@ -31,6 +33,24 @@ export const ProjectRenderer = (function() {
 
     }
 
+    function _create_edit(header) {
+        const title = header.firstChild;
+        const _header = header;
+        return function edit() {
+            let fieldValue = title.textContent;
+            title.textContent = "";
+            const editDiv = document.createElement("div");
+            editDiv.classList.add("edit")
+            title.appendChild(editDiv);
+            const input = document.createElement("input");
+            input.classList.add("edit-bar")
+            input.value = title.textContent;
+            editDiv.appendChild(input);
+            editDiv.appendChild(new IconButton(confirmIcon))
+            editDiv.appendChild(new IconButton(cancelIcon))
+        }
+    }
+
     function create(projectData, projectController) {
         const project = document.createElement("div");
         project.classList.add("project");
@@ -41,7 +61,7 @@ export const ProjectRenderer = (function() {
         const div = document.createElement("div");
         pjHeader.appendChild(div);
 
-        div.appendChild(new IconButton(editIcon))
+        div.appendChild(new IconButton(editIcon, _create_edit(pjHeader)))
         div.appendChild(new IconButton(deleteIcon,_create_delete(project, projectController, projectData)))
 
         const taskContainer = document.createElement("div");

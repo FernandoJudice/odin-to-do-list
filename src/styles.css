@@ -92,3 +92,12 @@ body {
     padding-left: 64px;
     padding-top: 16px;
 }
+
+.edit-bar {
+    font-size: 1.3rem;
+    background: none;
+    padding: 4px;
+    border: 2px var(--primary-color) solid;
+    border-radius: 8px;
+    margin-right: 8px;
+}
