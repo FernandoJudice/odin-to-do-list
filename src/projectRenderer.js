@@ -1,5 +1,6 @@
 import deleteIcon from "./img/trash-can-outline.svg"
 import editIcon from "./img/pencil-outline.svg"
+import { IconButton } from "./iconButton";
 
 
 export const ProjectRenderer = (function() {
@@ -16,23 +17,8 @@ export const ProjectRenderer = (function() {
         const div = document.createElement("div");
         project.appendChild(div);
 
-        const editButton = document.createElement("button");
-        editButton.classList.add("icon-button");
-        div.appendChild(editButton);
-
-        const editImg = document.createElement("img");
-        editImg.src = editIcon;
-        editImg.classList.add("icon-img");
-        editButton.appendChild(editImg);
-
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("icon-button");
-        div.appendChild(deleteButton);
-
-        const deleteImg = document.createElement("img");
-        deleteImg.src = deleteIcon;
-        deleteImg.classList.add("icon-img");
-        deleteButton.appendChild(deleteImg);
+        div.appendChild(new IconButton(editIcon))
+        div.appendChild(new IconButton(deleteIcon))
         
         return project
     }
